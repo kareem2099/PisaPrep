@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="اختبار رياضيات تفاعلي مع أسئلة متنوعة لاختبار مهاراتك في الرياضيات">
+  <title>اختبار الرياضيات - اختبر معرفتك</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+  <link rel="stylesheet" href="style/navbar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="quiz-app">
+
+    <!-- Navbar placeholder -->
+    <div id="navbar-container"></div>
+
+    <!-- Start Screen -->
+    <section id="start-screen" class="screen slide-in">
+      <div class="container">
+        <header>
+          <h1 class="title">اختبار الرياضيات</h1>
+          <p class="subtitle">اختبر مهاراتك في الرياضيات مع هذا الاختبار التفاعلي</p>
+        </header>
+        
+        <div class="start-content">
+          <div class="features-list">
+            <div class="feature">
+              <span class="icon">📊</span>
+              <span>15 أسئلة متنوعة</span>
+            </div>
+            <div class="feature">
+              <span class="icon">⏱️</span>
+              <span>تتبع التقدم</span>
+            </div>
+            <div class="feature">
+              <span class="icon">🏆</span>
+              <span>شهادة إنجاز</span>
+            </div>
+          </div>
+          
+          <button id="start-btn" class="cta-button pulse">ابدأ الاختبار</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Screen (Hidden Initially) -->
+    <section id="quiz-screen" class="screen hidden">
+      <div class="container">
+        <header class="quiz-header">
+          <div id="progress-bar">
+            <div id="progress-fill"></div>
+          </div>
+          <div class="progress-text">
+            السؤال <span id="current-question">1</span> من <span id="total-questions">10</span>
+          </div>
+          <div id="timer">⏱️ 00:00</div>
+        </header>
+        
+        <main id="quiz-content">
+          <div id="question-container">
+            <!-- Question will be inserted here -->
+          </div>
+          
+          <div id="options-container">
+            <!-- Options will be inserted here -->
+          </div>
+          
+          <div id="feedback" class="hidden">
+            <!-- Feedback will be inserted here -->
+          </div>
+        </main>
+        
+        <footer class="quiz-footer">
+          <button id="prev-btn" class="nav-button" disabled>السابق</button>
+          <div id="question-indicators">
+            <!-- Question indicators will be inserted here -->
+          </div>
+          <button id="next-btn" class="nav-button">التالي</button>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container"></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/navbar.js"></script>
+</body>
+</html>

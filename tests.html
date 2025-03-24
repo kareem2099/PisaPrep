@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الاختبارات المتاحة - اختبارات الرياضيات</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+  <link rel="stylesheet" href="style/navbar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="tests-app">
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+
+    <!-- Hero Section -->
+    <section class="tests-hero fade-in">
+      <div class="container">
+        <h1 class="title">اختر اختبارك</h1>
+        <p class="subtitle">تصفح مجموعة اختباراتنا المصممة خصيصًا لمستواك</p>
+      </div>
+    </section>
+
+    <!-- Tests Content -->
+    <main class="tests-content">
+      <div class="container">
+        <div class="filters slide-up">
+          <div class="filter-group">
+            <label for="level">المستوى:</label>
+            <select id="level">
+              <option value="all">الكل</option>
+              <option value="beginner">مبتدئ</option>
+              <option value="intermediate">متوسط</option>
+              <option value="advanced">متقدم</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="category">التصنيف:</label>
+            <select id="category">
+              <option value="all">الكل</option>
+              <option value="algebra">الجبر</option>
+              <option value="geometry">الهندسة</option>
+              <option value="calculus">حساب المثلثات</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tests-grid">
+          <!-- Test Card 1 -->
+          <div class="test-card scale-in">
+            <div class="test-header">
+              <span class="level beginner">مبتدئ</span>
+              <span class="category">الجبر</span>
+            </div>
+            <h3>أساسيات الجبر</h3>
+            <p>اختبار شامل لأساسيات الجبر للمبتدئين</p>
+            <div class="test-meta">
+              <span>⏱️ 10 دقائق</span>
+              <span>❓ 15 سؤال</span>
+            </div>
+            <a href="quiz.html?test=algebra-basics" class="start-test">ابدأ الاختبار</a>
+          </div>
+
+          <!-- Test Card 2 -->
+          <div class="test-card scale-in" style="animation-delay: 0.2s;">
+            <div class="test-header">
+              <span class="level intermediate">متوسط</span>
+              <span class="category">الهندسة</span>
+            </div>
+            <h3>هندسة المستوى</h3>
+            <p>اختبار شامل لأشكال وهندسة المستوى</p>
+            <div class="test-meta">
+              <span>⏱️ 15 دقائق</span>
+              <span>❓ 20 سؤال</span>
+            </div>
+            <a href="quiz.html?test=plane-geometry" class="start-test">ابدأ الاختبار</a>
+          </div>
+
+          <!-- Test Card 3 -->
+          <div class="test-card scale-in" style="animation-delay: 0.4s;">
+            <div class="test-header">
+              <span class="level advanced">متقدم</span>
+              <span class="category">حساب المثلثات</span>
+            </div>
+            <h3>حساب المثلثات المتقدم</h3>
+            <p>اختبار شامل لمتطابقات وحساب المثلثات</p>
+            <div class="test-meta">
+              <span>⏱️ 20 دقائق</span>
+              <span>❓ 25 سؤال</span>
+            </div>
+            <a href="quiz.html?test=advanced-trigonometry" class="start-test">ابدأ الاختبار</a>
+          </div>
+
+          <!-- Test Card 4 -->
+          <div class="test-card scale-in" style="animation-delay: 0.6s;">
+            <div class="test-header">
+              <span class="level beginner">مبتدئ</span>
+              <span class="category">الحساب</span>
+            </div>
+            <h3>أساسيات الحساب</h3>
+            <p>اختبار شامل للعمليات الحسابية الأساسية</p>
+            <div class="test-meta">
+              <span>⏱️ 8 دقائق</span>
+              <span>❓ 12 سؤال</span>
+            </div>
+            <a href="quiz.html?test=arithmetic-basics" class="start-test">ابدأ الاختبار</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container"></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/navbar.js"></script>
+
+<!-- Add this right before the closing </body> tag -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animation trigger
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-up, .scale-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target); // Stop observing after animation
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px' // Adjust this to trigger animation earlier
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Filter functionality (keep your existing filter code)
+    const levelFilter = document.getElementById('level');
+    const categoryFilter = document.getElementById('category');
+    const testCards = document.querySelectorAll('.test-card');
+
+    function filterTests() {
+      const levelValue = levelFilter.value;
+      const categoryValue = categoryFilter.value;
+
+      testCards.forEach(card => {
+        const cardLevel = card.querySelector('.level').classList[1];
+        const cardCategory = card.querySelector('.category').textContent;
+
+        const levelMatch = levelValue === 'all' || cardLevel === levelValue;
+        const categoryMatch = categoryValue === 'all' || cardCategory.includes(categoryValue);
+
+        if (levelMatch && categoryMatch) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    levelFilter.addEventListener('change', filterTests);
+    categoryFilter.addEventListener('change', filterTests);
+  });
+</script></body>
+</html>

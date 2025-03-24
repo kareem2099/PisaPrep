@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عن منصة اختبارات الرياضيات</title>
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="style/main.css">
+  <link rel="stylesheet" href="style/animations.css">
+  <link rel="stylesheet" href="style/navbar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Navbar Container (will be injected by JavaScript) -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="about-hero fade-in">
+        <div class="container">
+          <h1 class="title">منصة اختبارات الرياضيات التفاعلية</h1>
+          <p class="subtitle">رحلة تعليمية ممتعة لتطوير مهاراتك في الرياضيات</p>
+        </div>
+      </section>
+
+      <!-- About Content -->
+      <div class="about-content">
+        <section class="mission slide-up">
+          <div class="container">
+            <h2>رسالتنا</h2>
+            <p>نحن نؤمن بأن الرياضيات يمكن أن تكون ممتعة وسهلة الفهم عندما تقدم بالطريقة الصحيحة. نسعى لجعل تعلم الرياضيات تجربة تفاعلية ممتعة للطلاب من جميع المستويات.</p>
+            <div class="stats">
+              <div class="stat bounce-in">
+                <span class="number">5000+</span>
+                <span class="label">طالب مسجل</span>
+              </div>
+              <div class="stat bounce-in" style="animation-delay: 0.2s;">
+                <span class="number">50+</span>
+                <span class="label">اختبار متاح</span>
+              </div>
+              <div class="stat bounce-in" style="animation-delay: 0.4s;">
+                <span class="number">98%</span>
+                <span class="label">رضا المستخدمين</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="features slide-up" style="animation-delay: 0.3s;">
+          <div class="container">
+            <h2>لماذا نختارنا؟</h2>
+            <div class="features-grid">
+              <div class="feature-card scale-in">
+                <div class="icon">📊</div>
+                <h3>اختبارات ذكية</h3>
+                <p>أسئلة ذكية تتكيف مع مستوى الطالب</p>
+              </div>
+              <div class="feature-card scale-in" style="animation-delay: 0.2s;">
+                <div class="icon">🏆</div>
+                <h3>شهادات معتمدة</h3>
+                <p>احصل على شهادات إنجاز معتمدة</p>
+              </div>
+              <div class="feature-card scale-in" style="animation-delay: 0.4s;">
+                <div class="icon">👨‍🏫</div>
+                <h3>خبراء متخصصون</h3>
+                <p>فريق من خبراء الرياضيات والتعليم</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="team slide-up" style="animation-delay: 0.6s;">
+          <div class="container">
+            <h2>فريقنا</h2>
+            <div class="team-members">
+              <div class="member fade-in">
+                <div class="avatar">👨‍💼</div>
+                <h3>د. أحمد محمد</h3>
+                <p>خبير رياضيات</p>
+              </div>
+              <div class="member fade-in" style="animation-delay: 0.2s;">
+                <div class="avatar">👩‍💻</div>
+                <h3>أ. سارة عبدالله</h3>
+                <p>مطورة تعليمية</p>
+              </div>
+              <div class="member fade-in" style="animation-delay: 0.4s;">
+                <div class="avatar">👨‍🎨</div>
+                <h3>م. خالد سليم</h3>
+                <p>مصمم تجربة المستخدم</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer Container (will be injected by JavaScript) -->
+    <div id="footer-container"></div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script type="module" src="js/app.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/footer.js"></script>
+  
+  <!-- Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animation trigger
+      const animatedElements = document.querySelectorAll('.slide-up, .fade-in, .scale-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => observer.observe(el));
+      
+      // Add padding to body to account for fixed navbar
+      const navbarHeight = document.querySelector('.premium-navbar')?.offsetHeight || 70;
+      document.body.style.paddingTop = `${navbarHeight}px`;
+    });
+  </script>
+</body>
+</html>

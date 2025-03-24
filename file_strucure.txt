@@ -1,0 +1,26 @@
+math-quiz-app/
+│
+├── index.html                  # Start & Quiz page
+├── result.html                 # NEW: Result screen page
+│
+├── style/
+│   ├── main.css
+│   └── animations.css          # NEW: Fancy entrance/exit animations
+│
+├── js/
+│   ├── app.js                  # Controls quiz logic
+│   ├── quizData.js             # Holds or fetches questions
+│   ├── utils.js                # Shared functions (like shuffle)
+│   └── result.js               # NEW: Logic for result screen
+│
+├── assets/
+│   ├── images/
+│   └── fonts/
+│
+├── data/
+│   └── questions.json
+│
+├── components/
+│   └── QuestionCard.js
+│
+└── README.md

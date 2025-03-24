@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتصل بنا - اختبارات الرياضيات</title>
+  <link rel="stylesheet" href="style/main.css" />
+  <link rel="stylesheet" href="style/animations.css" />
+  <link rel="stylesheet" href="style/navbar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="contact-app">
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Hero Section -->
+    <section class="contact-hero fade-in">
+      <div class="container">
+        <h1 class="title">تواصل معنا</h1>
+        <p class="subtitle">نحن هنا لمساعدتك في أي استفسار لديك</p>
+      </div>
+    </section>
+
+    <!-- Contact Content -->
+    <main class="contact-content">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form slide-up">
+            <h2>أرسل رسالة</h2>
+            <form id="messageForm">
+              <div class="form-group">
+                <label for="name">الاسم الكامل</label>
+                <input type="text" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" required>
+              </div> 
+              <div class="form-group">
+                <label for="subject">الموضوع</label>
+                <select id="subject" required>
+                  <option value="">اختر موضوع الرسالة</option>
+                  <option value="support">دعم فني</option>
+                  <option value="suggestion">مقترح</option>
+                  <option value="partnership">شراكة</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">الرسالة</label>
+                <textarea id="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">إرسال الرسالة</button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info slide-up" style="animation-delay: 0.3s;">
+            <h2>معلومات التواصل</h2>
+            <div class="info-card bounce-in">
+              <div class="icon">📍</div>
+              <h3>العنوان</h3>
+              <p>الرياض، المملكة العربية السعودية</p>
+            </div>
+            <div class="info-card bounce-in" style="animation-delay: 0.2s;">
+              <div class="icon">📧</div>
+              <h3>البريد الإلكتروني</h3>
+              <p>info@math-tests.com</p>
+            </div>
+            <div class="info-card bounce-in" style="animation-delay: 0.4s;">
+              <div class="icon">📞</div>
+              <h3>الهاتف</h3>
+              <p>+966 12 345 6789</p>
+            </div>
+            
+            <div class="working-hours fade-in" style="animation-delay: 0.6s;">
+              <h3>ساعات العمل</h3>
+              <p>الأحد - الخميس: 8 ص - 5 م</p>
+              <p>الجمعة - السبت: إجازة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Map Section -->
+    <section class="map-section slide-up" style="animation-delay: 0.6s;">
+      <div class="container">
+        <h2>موقعنا على الخريطة</h2>
+        <div class="map-placeholder">
+          <div class="map-overlay">
+            <p>خريطة تفاعلية لموقعنا الجغرافي</p>
+            <button class="view-map">عرض الخريطة الكاملة</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-container"></div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/navbar.js"></script>
+
+<!-- Add this right before the closing </body> tag -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animation trigger
+    const animatedElements = document.querySelectorAll('.slide-up, .fade-in, .bounce-in, .scale-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target); // Stop observing after animation
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px' // Adjust this to trigger animation earlier
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+    
+    // Form submission handling
+    document.getElementById('messageForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Here you would normally send the data to a server
+      console.log({ name, email, subject, message });
+      
+      // Show success message
+      alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.');
+      e.target.reset();
+    });
+  });
+</script>
+</body>
+</html>
