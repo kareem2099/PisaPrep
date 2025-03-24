@@ -1,9 +1,7 @@
 // Render Question Card
-export function renderQuestion(question, index, totalQuestions, userAnswer = null) {
-    
+export function renderQuestion(question, index, totalQuestions, userAnswer = null, relatedQuestions = []) {
   let html = `
     <div class="question-card">
-      
   `;
 
   // Question content
@@ -51,17 +49,33 @@ export function renderQuestion(question, index, totalQuestions, userAnswer = nul
     html += `</div>`;
   }
 
-  // Text answer
-  if (question.type === "text") {
-    html += `
-      <div class="answer-input">
-        <textarea 
-          placeholder="اكتب إجابتك هنا..." 
-          oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'"
-        >${userAnswer || ''}</textarea>
+  // Related questions notification and popup trigger
+// In renderQuestion function:
+if (relatedQuestions && relatedQuestions.length > 0) {
+  console.log(`Rendering ${relatedQuestions.length} related questions for Q${index + 1}`);
+  
+  html += `
+    <div class="related-questions-notice">
+      <div class="related-notice-text">
+        <i class="fas fa-info-circle"></i>
+        هذا السؤال لديه ${relatedQuestions.length} أسئلة مرتبطة
       </div>
-    `;
-  }
+      <button class="view-related-btn" data-question-index="${index}">
+        <i class="fas fa-eye"></i> عرض الأسئلة المرتبطة
+      </button>
+    </div>
+    
+    <div class="related-questions-modal modal" id="related-modal-${index}">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>الأسئلة المرتبطة</h3>
+        <div class="related-questions-container"></div>
+      </div>
+    </div>
+  `;
+} else {
+  console.log(`No related questions for Q${index + 1}`);
+}
 
   html += `</div>`; // Close question-card
 

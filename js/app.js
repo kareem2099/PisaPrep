@@ -23,7 +23,10 @@ const quizState = {
   userAnswers: [],
   quizData: [],
   timer: null,
-  startTime: null
+  startTime: null,
+  relatedQuestions: [],
+  currentQuestionGroup: null
+
 };
 
 // Initialize Quiz
@@ -100,14 +103,26 @@ startBtn.addEventListener('click', async () => {
 });
 
 // Render Current Question
+// ... (keep all existing code until renderCurrentQuestion)
+
 function renderCurrentQuestion() {
   const question = quizState.quizData[quizState.currentQuestionIndex];
+
+  // Check if this question has related questions
+  if (question.relatedTo && question.relatedTo.length > 0) {
+    quizState.relatedQuestions = quizState.quizData.filter(q => 
+      question.relatedTo.includes(q.id) && q.id !== question.id
+    );
+  } else {
+    quizState.relatedQuestions = [];
+  }
   
   quizContainer.innerHTML = renderQuestion(
     question,
     quizState.currentQuestionIndex,
     quizState.quizData.length,
-    quizState.userAnswers[quizState.currentQuestionIndex]
+    quizState.userAnswers[quizState.currentQuestionIndex],
+    quizState.relatedQuestions
   );
   
   // Update UI elements
@@ -124,6 +139,55 @@ function renderCurrentQuestion() {
   // Add animation
   quizContainer.classList.add('question-enter');
   setTimeout(() => quizContainer.classList.remove('question-enter'), 600);
+
+  // Setup related questions modal
+  setupRelatedQuestionsModal();
+}
+
+function setupRelatedQuestionsModal() {
+  const viewRelatedBtn = document.querySelector('.view-related-btn');
+  const modal = document.getElementById('related-questions-modal');
+  const closeBtn = document.querySelector('.close-modal');
+  
+  if (viewRelatedBtn && modal) {
+    viewRelatedBtn.addEventListener('click', () => {
+      const container = document.getElementById('related-questions-container');
+      container.innerHTML = '';
+      
+      quizState.relatedQuestions.forEach(relatedQ => {
+        const questionHtml = `
+          <div class="related-question-modal">
+            ${relatedQ.header ? `<h3>${relatedQ.header}</h3>` : ''}
+            ${relatedQ.img ? `<img src="${relatedQ.img}" class="q-img" loading="lazy">` : ''}
+            <p>${relatedQ.question}</p>
+          </div>
+        `;
+        container.innerHTML += questionHtml;
+      });
+      
+      modal.style.display = 'block';
+    });
+  }
+  
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  }
+  
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+}
+
+// ... (keep all remaining existing code)
+
+function navigateToRelatedQuestion(index) {
+  saveCurrentAnswer();
+  quizState.currentQuestionIndex = index;
+  renderCurrentQuestion();
 }
 
 // Save current answer

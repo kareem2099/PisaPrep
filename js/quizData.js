@@ -26,6 +26,7 @@ export async function fetchQuizData() {
         ...q,
         category: core.category,
         difficulty: core.difficulty
+        
       }))
     );
 
