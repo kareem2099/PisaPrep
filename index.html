@@ -14,6 +14,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- AFK Overlay Elements -->
+<div id="afk-overlay" class="hidden">
+  <div id="afk-countdown">
+    <span class="countdown-number">3</span>
+  </div>
+</div>
+
+<video  loop id="afk-video" class="hidden">
+  <source src="assets/videos/afk-background-modify.mp4" type="video/mp4">
+</video>
+
   <div class="quiz-app">
 
     <!-- Navbar placeholder -->
@@ -89,8 +101,9 @@
     <div id="footer-container"></div>
   </div>
 
-  <script type="module" src="js/app.js"></script>
-  <script src="js/footer.js"></script>
-  <script src="js/navbar.js"></script>
+  <script type="module" src="js/app.js" defer></script>
+  <script src="js/footer.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="afk-video/afk-video.js" defer></script>
 </body>
 </html>

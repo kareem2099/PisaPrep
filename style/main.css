@@ -543,6 +543,23 @@ h2 {
   display: none !important;
 }
 
+/* Hide elements completely when AFK */
+.hidden-afk {
+  display: none !important;
+}
+
+/* Ensure the AFK video is full-screen and above all other elements */
+#afk-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Ensure it's above all other elements */
+  object-fit: cover;
+  background: black; /* Fallback background */
+}
+
 /* ===== Call-to-Action Button Styles ===== */
 .cta-button {
   padding: 1rem 2rem;
@@ -1448,3 +1465,4 @@ h2 {
   background-color: #fff5f5; 
   color: #9b2c2c; 
 }
+
