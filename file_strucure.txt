@@ -2,16 +2,30 @@ math-quiz-app/
 │
 ├── index.html                  # Start & Quiz page
 ├── result.html                 # NEW: Result screen page
+├── about.html                 # NEW: Result screen page
+├── tests.html                 # NEW: Result screen page
+├── contact.html                 # NEW: Result screen page
 │
 ├── style/
 │   ├── main.css
+│   ├── navigation.css
+│   ├── navbar.css
 │   └── animations.css          # NEW: Fancy entrance/exit animations
 │
 ├── js/
+│   ├── footer.html
+│   ├── timer.js
+│   ├── navbar.js
 │   ├── app.js                  # Controls quiz logic
 │   ├── quizData.js             # Holds or fetches questions
 │   ├── utils.js                # Shared functions (like shuffle)
 │   └── result.js               # NEW: Logic for result screen
+│
+├── includes/
+│   ├── footer.html
+│   ├── navbar.html
+│
+│
 │
 ├── assets/
 │   ├── images/

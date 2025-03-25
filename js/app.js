@@ -1,5 +1,5 @@
 import { fetchQuizData } from './quizData.js';
-import { renderQuestion, saveAnswer } from '../components/QuestionCard.js';
+import { renderQuestion, saveAnswer, initRelatedQuestionsModals } from '../components/QuestionCard.js';
 import { showResults, updateNavigationButtons } from './utils.js';
 import { startTimer, stopTimer, getTimeElapsed, resetTimer } from './timer.js';
 
@@ -145,41 +145,8 @@ function renderCurrentQuestion() {
 }
 
 function setupRelatedQuestionsModal() {
-  const viewRelatedBtn = document.querySelector('.view-related-btn');
-  const modal = document.getElementById('related-questions-modal');
-  const closeBtn = document.querySelector('.close-modal');
-  
-  if (viewRelatedBtn && modal) {
-    viewRelatedBtn.addEventListener('click', () => {
-      const container = document.getElementById('related-questions-container');
-      container.innerHTML = '';
-      
-      quizState.relatedQuestions.forEach(relatedQ => {
-        const questionHtml = `
-          <div class="related-question-modal">
-            ${relatedQ.header ? `<h3>${relatedQ.header}</h3>` : ''}
-            ${relatedQ.img ? `<img src="${relatedQ.img}" class="q-img" loading="lazy">` : ''}
-            <p>${relatedQ.question}</p>
-          </div>
-        `;
-        container.innerHTML += questionHtml;
-      });
-      
-      modal.style.display = 'block';
-    });
-  }
-  
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-  }
-  
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
+  // Initialize the related questions modals from the QuestionCard component
+  initRelatedQuestionsModals();
 }
 
 // ... (keep all remaining existing code)
