@@ -25,7 +25,10 @@ math-quiz-app/
 │   ├── footer.html
 │   ├── navbar.html
 │
-│
+├── afk-videos/
+│   ├── afk-video.css
+│   ├── afk-video.js
+
 │
 ├── assets/
 │   ├── images/
